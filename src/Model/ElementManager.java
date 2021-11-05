@@ -1,6 +1,10 @@
 package Model;
 
 import java.awt.*;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,6 +101,31 @@ public class ElementManager {
         Element element= getSelected();
         if(element!=null){
             this.Remove(element);
+        }
+    }
+
+    public void write(ObjectOutputStream out) throws IOException {
+        if(out==null){
+            return ;
+        }
+        for(Element e:list){
+            out.writeObject(e);
+        }
+    }
+    public void read(ObjectInputStream in) throws IOException {
+        if(in ==null){
+            return;
+        }
+        this.ClearAll();
+        try {
+            while (true){
+                this.Add((Element) in.readObject());
+            }
+        } catch (EOFException e){
+            System.out.println("已经成功读取");
+        } catch (ClassNotFoundException e){
+            System.out.println("未找到该类");
+            e.printStackTrace();
         }
     }
 }

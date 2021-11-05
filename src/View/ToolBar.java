@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import Utils.*;
 public class ToolBar extends JPanel implements ToolIf {
@@ -103,12 +104,10 @@ public class ToolBar extends JPanel implements ToolIf {
         tmp.setHgap(8);
         this.setLayout(tmp);
 
-        try {
-
-            BufferedImage lineImg= ImageIO.read(new File("src/Image/line.png"));
-            BufferedImage recImg= ImageIO.read(new File("src/Image/rec.png"));
-            BufferedImage inputImg= ImageIO.read(new File("src/Image/input.png"));
-            BufferedImage ovalImg= ImageIO.read(new File("src/Image/oval.png"));
+            URL lineImg= ToolBar.class.getResource("/Image/line.png");
+            URL recImg= ToolBar.class.getResource("/Image/rec.png");
+            URL inputImg= ToolBar.class.getResource("/Image/input.png");
+            URL ovalImg= ToolBar.class.getResource("/Image/oval.png");
 
             lineIcon=new ImageIcon(lineImg);
 //            img.setImage(img.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_DEFAULT));
@@ -152,9 +151,7 @@ public class ToolBar extends JPanel implements ToolIf {
             now.addMouseListener(new ImgClick(Type.Oval));
             this.add(now);
 
-        }   catch (IOException e){
-            System.out.println(e.toString());
-        }
+
         this.add(new ColorPanel());
     }
 

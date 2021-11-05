@@ -14,6 +14,7 @@ public class Main extends JFrame {
         Panel panel=new Panel();
         toolBar.setPanelIf(panel);
         panel.setToolIf(toolBar);
+        menuBar.setPanelIf(panel);
 
         this.setTitle("MiniCAD");
         this.setSize(define.WIDTH,define.HEIGHT);
